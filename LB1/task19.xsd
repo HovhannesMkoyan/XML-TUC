@@ -1,0 +1,60 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="learning-group-letter">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="meta">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="learning-block" type="xs:integer" />
+                            <xs:element name="learning-group">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="speaker" type="xs:string" />
+                                        <xs:element name="participant" type="xs:string" minOccurs="2" maxOccurs="4" />
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="results">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tasks">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="task">
+                                            <xs:complexType>
+                                                <xs:attribute name="id" type="xs:integer" />
+                                                <xs:attribute name="difficulty">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="easy" />
+                                                            <xs:enumeration value="medium" />
+                                                            <xs:enumeration value="hard" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="solved">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="yes" />
+                                                            <xs:enumeration value="no" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="issues" type="xs:string" />
+                            <xs:element name="hints-or-requests" type="xs:string" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

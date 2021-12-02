@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!DOCTYPE results [
+    <!ELEMENT results (task+)>
+    <!ELEMENT task (solved, comment*)>
+    <!ELEMENT solved (#PCDATA)>
+    <!ELEMENT comment (#PCDATA)>
+    <!ATTLIST task task_number CDATA #REQUIRED>
+]>
+
+<results>
+    <task task_number="1">
+        <solved>true</solved>
+        <comment>ex1a.xml is valid</comment>
+        <comment>ex1b.xml is not valid, because (description, number, remark) doesn’t appear in the same exact sequence in one of the row elements</comment>
+    </task>
+    <task task_number="2">
+        <solved>true</solved>
+        <comment>ex2a.xml is not valid, because one of the house elements has more than 1 remark element, but at most it should have either 0 or 1. Also, one of the district elements does not have at least 1 street element.</comment>
+        <comment>ex2b.xml is valid</comment>
+    </task>
+    <task task_number="3">
+        <solved>true</solved>
+        <comment>ex3a.xml is valid</comment>
+        <comment>ex3b.xml is not valid, because nbsp entity was not declared</comment>
+        <comment>ex3c.xml is not valid, because ampersand character was not declared</comment>
+        <comment>ex3d.xml is valid</comment>
+    </task>
+    <task task_number="4">
+        <solved>true</solved>
+        <comment>both xml are valid</comment>
+    </task>
+    <task task_number="5">
+        <solved>true</solved>
+        <comment>ex5a.xml is not valid, because id references does not exist</comment>
+        <comment>ex5b.xml is valid</comment>
+    </task>
+    <task task_number="6">
+        <solved>true</solved>
+        <comment>ex6a.xml is not valid, because element "term" doesn't have the right children element</comment>
+        <comment>ex6b.xml is valid</comment>
+        <comment>ex6c.xml is valid</comment>
+    </task>
+    <task task_number="7">
+        <solved>true</solved>
+    </task>
+    <task task_number="8">
+        <solved>true</solved>
+        <comment>ex8a.xml is valid</comment>
+        <comment>ex8b.xml is not valid, because one of the "company" elements doesn't have the required "personid" attribute.</comment>
+    </task>
+    <task task_number="9">
+        <solved>true</solved>
+    </task>
+    <task task_number="10">
+        <solved>true</solved>
+        <comment>ex10a.xml is valid</comment>
+        <comment>ex10b.xml is not valid, because the sequece of (place, date, partner) is mixed</comment>
+    </task>
+
+    <task task_number="11">
+        <solved>true</solved>
+        <comment>ex11a.xml is valid</comment>
+        <comment>ex11b.xml is not valid, because the the element "psnr" is missing</comment>
+    </task>
+
+    <task task_number="12">
+        <solved>true</solved>
+        <comment>ex12a.xml is not valid, because "comment" element value is not integer</comment>
+        <comment>ex12b.xml is valid</comment>
+    </task>
+
+    <task task_number="13">
+        <solved>true</solved>
+        <comment>ex13a.xml is not valid, because "tutorial-day" element value is not correct, 3 chars instead of 2.</comment>
+        <comment>ex13b.xml is valid</comment>
+    </task>
+    <task task_number="14">
+        <solved>true</solved>
+        <comment>ex14a.xml is not valid, because "vehicle" element types are not mentioned and can't inherit some specific children elements</comment>
+        <comment>ex14b.xml is valid</comment>
+    </task>
+    <task task_number="15">
+        <solved>true</solved>
+        <comment>ex15a.xml is not valid, because grade value exceeds specified range</comment>
+        <comment>ex15b.xml is valid</comment>
+    </task>
+    <task task_number="16">
+        <solved>true</solved>
+        <comment>ex16a.xml is valid</comment>
+        <comment>ex16b.xml is not valid, because "person" element value "funny" is not allowed</comment>
+    </task>
+    <task task_number="17">
+        <solved>true</solved>
+        <comment>ex17a.xml is valid</comment>
+        <comment>ex17b.xml is not valid, because "assessment" element value "crazy" is not allowed</comment>
+    </task>
+</results>
+
+<!-- 
+
+- - - Task 7 - - -
+<remarks>
+    <remark id="re1"/>
+    <remark id="re2"/>
+    <footnote ref="re1" />
+</remarks>
+
+
+
+- - - Task 9 - - -
+<!DOCTYPE library [
+  <!ELEMENT library  (shelfs, staff)>
+  <!ELEMENT shelfs   (shelf+)>
+  <!ELEMENT shelf   (book*)>
+  <!ELEMENT book   (title, author, pages)>
+  <!ELEMENT title   (#PCDATA)>
+  <!ELEMENT author   (#PCDATA)>
+  <!ELEMENT pages   (#PCDATA)>
+  <!ELEMENT staff   (person+)>
+  <!ELEMENT person   (name)>
+  <!ELEMENT name   (#PCDATA)>
+
+  <!ATTLIST library name CDATA #REQUIRED>
+  <!ATTLIST shelf alphabetical (yes|no) #REQUIRED>
+  <!ATTLIST shelf begin-at CDATA #IMPLIED>
+  <!ATTLIST person staff-id CDATA #REQUIRED>
+]>
+
+
+-->
