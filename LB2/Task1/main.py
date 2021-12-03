@@ -1,49 +1,52 @@
 import xml.sax
 import sys
 
-class CompactHandler(xml.sax.ContentHandler):
+class IndentHandler(xml.sax.ContentHandler):
     def __init__(self):
-        self.closed = False
+        self.isClosed = False
         self.indent = 0
         self.lastNodeWasText = False
 
-    def startElement(self, tag, attrs):
-        if self.closed:
-            sys.stdout.write('\n'+self.indent*" ")
-            self.closed = False
-        self.indent += 1+len(tag)
+    def startElement(self, tag, attrs): # targets all opening elements        
+        if self.isClosed:
+            sys.stdout.write('\n' + self.indent * " ")
+            self.isClosed = False
+        self.indent += 1 + len(tag)
 
-        sys.stdout.write(tag+'[')
+        sys.stdout.write('<' + tag)
         first = True
 
-        for name in attrs.getNames():
-            if not first:
-                sys.stdout.write('\n'+self.indent*" ")
-            first = False
-            sys.stdout.write('@'+name+'['+attrs.getValue(name)+']')
-            self.closed = True
+        if len(attrs.getNames()) != 0:
+            for name in attrs.getNames():
+                if not first:
+                    sys.stdout.write('\n'+self.indent*" ")
+                first = False
+                sys.stdout.write(" " + name + "=\"" + attrs.getValue(name) + "\"")
+                self.isClosed = True
 
+        sys.stdout.write(">")
         self.lastNodeWasText = False
 
-    def endElement(self, tag):
-        self.closed = True
-        sys.stdout.write(']')
+    def endElement(self, tag): # targets all closing elements
+        self.isClosed = True
+        sys.stdout.write("</" + tag + ">")
         self.indent -= 1+len(tag)
         self.lastNodeWasText = False
 
-    def characters(self, data):
+    def characters(self, data): # targets element text content
         data = data.strip()
 
         if(len(data) > 0):
-            if self.closed and not self.lastNodeWasText:
+            if self.isClosed and not self.lastNodeWasText:
                 sys.stdout.write('\n'+self.indent*" ")
-                self.closed = False
+                self.isClosed = False
             sys.stdout.write(data)
-            self.closed = True
+            self.isClosed = True
 
         self.lastNodeWasText = True
 
-handler = CompactHandler()
+
+handler = IndentHandler()
 parser = xml.sax.make_parser()
 parser.setContentHandler(handler)
 parser.parse('/Users/hovhannesmkoyan/Desktop/XML/LB2/Task1/deliveries.xml')
