@@ -1,45 +1,35 @@
 import xml.sax
 import sys
 
+
 class IndentHandler(xml.sax.ContentHandler):
     def __init__(self):
-        self.currentElement = ""
         self.firstLevelIndent = 3
         self.secondLevelIndent = 6
         self.thirdLevelIndent = 9
 
-    def startElement(self, tag, attrs): # targets opening elements  
-        self.currentElement = tag
+    def startElement(self, tag, attrs):  # targets opening elements
         if tag == 'deliveries':
             print(self.firstLevelIndent * " " + f"<{tag}>")
         elif tag == 'article':
-            print(self.secondLevelIndent * " " + f"<{tag} id=\"{attrs['id']}\">")
+            print(self.secondLevelIndent * " " +
+                  f"<{tag} id=\"{attrs['id']}\">")
         elif tag == 'name' or tag == 'supplier':
             sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag}>")
         elif tag == 'price':
-            sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag} unitprice=\"{attrs['unitprice']}\">")
+            sys.stdout.write(self.thirdLevelIndent * " " +
+                             f"<{tag} unitprice=\"{attrs['unitprice']}\">")
 
-    def endElement(self, tag): # targets closing elements
-        self.isClosed = True
+    def endElement(self, tag):  # targets closing elements
         if tag == 'deliveries':
             print(self.firstLevelIndent * " " + f"</{tag}>")
         elif tag == 'article':
             print(self.secondLevelIndent * " " + f"</{tag}>")
         elif tag == 'name' or tag == 'price' or tag == 'supplier':
-            print(self.thirdLevelIndent * " " + f"</{tag}>")
-            
+            print(f"</{tag}>")
 
-    # def characters(self, data): # targets element text content
-    #     data = data.strip()
-
-    #     if(len(data) > 0):
-    #         if self.isClosed and not self.lastNodeWasText:
-    #             sys.stdout.write(self.indent * " ")
-    #             self.isClosed = False
-    #         sys.stdout.write(data)
-    #         self.isClosed = True
-
-    #     self.lastNodeWasText = True
+    def characters(self, data):  # targets element text content
+        sys.stdout.write(data.strip())
 
 
 handler = IndentHandler()
