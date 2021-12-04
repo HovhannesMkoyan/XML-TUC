@@ -19,7 +19,7 @@ def printSuppliersWithProducts():
         
 
 
-domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/Task5/deliveries.xml")
+domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries.xml")
 group = domtree.documentElement # this is the top element
 articles = group.getElementsByTagName('article')
 
