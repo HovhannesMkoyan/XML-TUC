@@ -5,8 +5,8 @@ import sys
 class IndentHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.firstLevelIndent = 3
-        self.secondLevelIndent = 6
-        self.thirdLevelIndent = 9
+        self.secondLevelIndent = 7
+        self.thirdLevelIndent = 11
 
     def startElement(self, tag, attrs):  # targets opening elements
         if tag == 'deliveries':
