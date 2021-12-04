@@ -12,13 +12,11 @@ class IndentHandler(xml.sax.ContentHandler):
         if tag == 'deliveries':
             print(self.firstLevelIndent * " " + f"<{tag}>")
         elif tag == 'article':
-            print(self.secondLevelIndent * " " +
-                  f"<{tag} id=\"{attrs['id']}\">")
+            print(self.secondLevelIndent * " " + f"<{tag} id=\"{attrs['id']}\">")
         elif tag == 'name' or tag == 'supplier':
             sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag}>")
         elif tag == 'price':
-            sys.stdout.write(self.thirdLevelIndent * " " +
-                             f"<{tag} unitprice=\"{attrs['unitprice']}\">")
+            sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag} unitprice=\"{attrs['unitprice']}\">")
 
     def endElement(self, tag):  # targets closing elements
         if tag == 'deliveries':
