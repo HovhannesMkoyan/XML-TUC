@@ -25,3 +25,5 @@ articles = group.getElementsByTagName('article')
 
 transform(articles)
 printSuppliersWithProducts()
+
+# order the info in the dictionary
