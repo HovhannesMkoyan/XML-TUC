@@ -9,6 +9,9 @@ class AnythingHandler(xml.sax.ContentHandler):
         self.currentTag = tag
 
     def characters(self, content):
+
+    def endElement(args):
+        
         
         
 
