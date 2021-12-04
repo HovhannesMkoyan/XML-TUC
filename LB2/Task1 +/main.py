@@ -1,7 +1,6 @@
 import xml.sax
 import sys
 
-
 class IndentHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.firstLevelIndent = 3
@@ -28,7 +27,6 @@ class IndentHandler(xml.sax.ContentHandler):
 
     def characters(self, data):  # targets element text content
         sys.stdout.write(data.strip())
-
 
 handler = IndentHandler()
 parser = xml.sax.make_parser()

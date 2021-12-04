@@ -1,7 +1,6 @@
 import xml.sax
 import sys
 
-
 class ToHTMLHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.row = ""
@@ -22,7 +21,6 @@ class ToHTMLHandler(xml.sax.ContentHandler):
 
     def characters(self, data):
         sys.stdout.write(data.strip())
-
 
 handler = ToHTMLHandler()
 parser = xml.sax.make_parser()
