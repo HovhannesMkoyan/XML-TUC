@@ -3,10 +3,12 @@ import sys
 
 articleIds = []
 
+
 class ConsistencyHandler(xml.sax.ContentHandler):
     def startElement(self, tag, attrs):  # targets opening elements
         if tag == 'article':
             articleIds.append(attrs['id'])
+
 
 def detectDuplications():
     for id in articleIds:
@@ -16,14 +18,14 @@ def detectDuplications():
                 duplicatesNumber += 1
         print(f"Article ID {id} repeats {duplicatesNumber} times")
         removeFromList(id)
-        
-    
+
+
 def removeFromList(id):
     for value in articleIds:
         if value == id:
             articleIds.remove(id)
 
-        
+
 handler = ConsistencyHandler()
 parser = xml.sax.make_parser()
 parser.setContentHandler(handler)
