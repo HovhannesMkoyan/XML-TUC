@@ -7,7 +7,7 @@ class IndentHandler(xml.sax.ContentHandler):
         self.indent = 0
         self.lastNodeWasText = False
 
-    def startElement(self, tag, attrs): # targets all opening elements        
+    def startElement(self, tag, attrs): # targets opening elements        
         if self.isClosed:
             sys.stdout.write('\n' + self.indent * " ")
             self.isClosed = False
@@ -27,7 +27,7 @@ class IndentHandler(xml.sax.ContentHandler):
         sys.stdout.write(">")
         self.lastNodeWasText = False
 
-    def endElement(self, tag): # targets all closing elements
+    def endElement(self, tag): # targets closing elements
         self.isClosed = True
         sys.stdout.write("</" + tag + ">")
         self.indent -= 1+len(tag)
@@ -38,7 +38,7 @@ class IndentHandler(xml.sax.ContentHandler):
 
         if(len(data) > 0):
             if self.isClosed and not self.lastNodeWasText:
-                sys.stdout.write('\n'+self.indent*" ")
+                sys.stdout.write(self.indent * " ")
                 self.isClosed = False
             sys.stdout.write(data)
             self.isClosed = True
