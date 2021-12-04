@@ -15,9 +15,9 @@ class IndentHandler(xml.sax.ContentHandler):
         elif tag == 'article':
             print(self.secondLevelIndent * " " + f"<{tag} id=\"{attrs['id']}\">")
         elif tag == 'name' or tag == 'supplier':
-                print(self.thirdLevelIndent * " " + f"<{tag}>")
+            sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag}>")
         elif tag == 'price':
-             print(self.thirdLevelIndent * " " + f"<{tag} unitprice=\"{attrs['unitprice']}\">")
+            sys.stdout.write(self.thirdLevelIndent * " " + f"<{tag} unitprice=\"{attrs['unitprice']}\">")
 
     def endElement(self, tag): # targets closing elements
         self.isClosed = True
@@ -25,8 +25,9 @@ class IndentHandler(xml.sax.ContentHandler):
             print(self.firstLevelIndent * " " + f"</{tag}>")
         elif tag == 'article':
             print(self.secondLevelIndent * " " + f"</{tag}>")
-        elif tag == 'name' or tag == 'supplier' or tag == 'price':
+        elif tag == 'name' or tag == 'price' or tag == 'supplier':
             print(self.thirdLevelIndent * " " + f"</{tag}>")
+            
 
     # def characters(self, data): # targets element text content
     #     data = data.strip()
