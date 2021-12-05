@@ -13,7 +13,7 @@ def detectDuplications():
         for possibleDuplicateId in articleIds:
             if id == possibleDuplicateId:
                 duplicatesNumber += 1
-        if duplicatesNumber != 1:
+        if duplicatesNumber > 1:
             print(f"Article ID {id} repeats {duplicatesNumber} times")
         removeFromList(id)
 
