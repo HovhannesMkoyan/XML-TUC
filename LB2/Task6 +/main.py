@@ -40,7 +40,7 @@ def adjustXML(group):
         supplierElement.appendChild(supplierElementText)
         articleElement.appendChild(supplierElement)
 
-        # Add article to root element
+        # Add article to the deliveries element
         topElement.appendChild(articleElement)
 
     return topElement
