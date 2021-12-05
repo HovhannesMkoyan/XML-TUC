@@ -1,3 +1,4 @@
 import xml.dom.minidom
 
-# just print the xml
+domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries.xml")
+print(domtree.toprettyxml())
