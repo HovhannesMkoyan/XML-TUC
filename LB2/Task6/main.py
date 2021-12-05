@@ -2,9 +2,9 @@ import xml.dom.minidom
 import random
 
 articleIds = []
-dictionary = {}
+productPriceDictionary = {}
 
-def adjust(group):
+def adjustXML(group):
     document = xml.dom.minidom.Document()
 
     # Deliveries element
@@ -22,15 +22,16 @@ def adjust(group):
 
         # Name element
         nameElement = document.createElement("name")
-        nameElementText = document.createTextNode(item.getElementsByTagName('name')[0].childNodes[0].nodeValue)
-        nameElement.appendChild(nameElementText)
+        nameElementText = item.getElementsByTagName('name')[0].childNodes[0].nodeValue
+        nameElement.appendChild(document.createTextNode(nameElementText))
         articleElement.appendChild(nameElement)
 
         # Price element
         priceElement = document.createElement("price")
-        priceElementText = document.createTextNode(item.getElementsByTagName('price')[0].childNodes[0].nodeValue)
-        priceElement.appendChild(priceElementText)
         priceElement.setAttribute("unitprice", item.getElementsByTagName('price')[0].getAttribute('unitprice'))
+        priceElementText = item.getElementsByTagName('price')[0].childNodes[0].nodeValue
+        adjustedPrice = adjustProductPrice(nameElementText, priceElementText)
+        priceElement.appendChild(document.createTextNode(adjustedPrice))
         articleElement.appendChild(priceElement)
 
         # Supplier element
@@ -39,6 +40,7 @@ def adjust(group):
         supplierElement.appendChild(supplierElementText)
         articleElement.appendChild(supplierElement)
 
+        # Add article to root element
         topElement.appendChild(articleElement)
 
     return topElement
@@ -53,8 +55,14 @@ def insertOrGenerate(id):
         insertOrGenerate(newId)
         return newId
 
+def adjustProductPrice(product, price):
+    if productPriceDictionary.get(product) is None:
+        productPriceDictionary[product] = price
+        return price
+    return productPriceDictionary.get(product)
+
+
 domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries1.xml")
 group = domtree.documentElement  # this is the top element
-adjustedXML = adjust(group)
+adjustedXML = adjustXML(group)
 print(adjustedXML.toprettyxml())
-
