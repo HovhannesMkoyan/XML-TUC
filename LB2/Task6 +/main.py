@@ -62,7 +62,7 @@ def adjustProductPrice(product, price):
     return productPriceDictionary.get(product)
 
 
-domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries1.xml")
+domtree = xml.dom.minidom.parse("/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries.xml")
 group = domtree.documentElement  # this is the top element
 adjustedXML = adjustXML(group)
 print(adjustedXML.toprettyxml())
