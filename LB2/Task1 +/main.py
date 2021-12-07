@@ -31,4 +31,4 @@ class IndentHandler(xml.sax.ContentHandler):
 handler = IndentHandler()
 parser = xml.sax.make_parser()
 parser.setContentHandler(handler)
-parser.parse('/Users/hovhannesmkoyan/Desktop/XML/LB2/deliveries.xml')
+parser.parse('/Users/hovhannesmkoyan/Desktop/TUC/XML/LB2/deliveries.xml')
